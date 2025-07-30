@@ -2,12 +2,9 @@
 import { createHandler, StartServer } from "@solidjs/start/server";
 
 // @ts-expect-error
-const isProd = "Deno" in globalThis && Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+const ROOT_DOMAIN = Deno.env.get("ROOT_DOMAIN") || "daisy.tica.fun";
 
-export default createHandler((ctx) => {
-  const { protocol, host } = new URL(ctx.request.url);
-  const fontsCSS = `${isProd ? "https:" : protocol}//${host.slice(6)}/fonts.css`;
-
+export default createHandler(() => {
   return (
     <StartServer
       document={({ assets, children, scripts }) => (
@@ -15,8 +12,8 @@ export default createHandler((ctx) => {
           <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="preload" href={fontsCSS} as="style" />
-            <link rel="stylesheet" href={fontsCSS} />
+            <link rel="preload" href={`https://${ROOT_DOMAIN}/fonts.css`} as="style" />
+            <link rel="stylesheet" href={`https://${ROOT_DOMAIN}/fonts.css`} />
             {assets}
           </head>
           <body>

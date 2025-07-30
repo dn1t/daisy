@@ -1,0 +1,7 @@
+@import "@daisy/tailwind-config/tailwind.css";
+
+@theme {
+  --font-display: O, P, sans-serif;
+  --font-sans: P, sans-serif;
+  --font-mono: J, P, sans-serif;
+}

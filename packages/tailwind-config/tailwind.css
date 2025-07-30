@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@import "@radix-ui/colors/slate.css";
+@import "@radix-ui/colors/slate-dark.css";
+
+@import "@radix-ui/colors/iris.css";
+@import "@radix-ui/colors/iris-dark.css";
+
+@import "@phosphor-icons/web/regular";
+@import "overlayscrollbars/overlayscrollbars.css";
+
+@config './radix-colors.ts';
+
+@layer base {
+  :root {
+    @apply antialiased;
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --foreground: black;
+    --background: white;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --foreground: white;
+    --background: black;
+  }
+
+  *::selection {
+    @apply bg-iris-9 text-white;
+  }
+}
+
+.scrollbar {
+  --os-size: 18px;
+  --os-padding-perpendicular: 5.5px;
+  --os-padding-axis: 7px;
+  --os-handle-interactive-area-offset: 4px;
+  --os-handle-border-radius: 10px;
+  --os-handle-bg: var(--slate-6);
+  --os-handle-bg-hover: var(--slate-7);
+  --os-handle-bg-active: var(--slate-7);
+}

@@ -1,0 +1,45 @@
+# Git
+*.orig
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+*.icloud
+
+# Linux
+*~
+.fuse_hidden*
+.nfs*
+
+# Windows
+.history/
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+
+# Node.js
+logs
+*.log
+.pnpm-debug.log*
+node_modules/
+
+# Project
+.env
+*.local
+*.tsbuildinfo
+dist
+.output
+.vinxi
+app.config.timestamp_*.js

@@ -1,0 +1,14 @@
+{
+  "name": "@daisy/tailwind-config",
+  "private": true,
+  "type": "module",
+  "author": "David Lee <me@tica.fun>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@phosphor-icons/web": "^2.1.2",
+    "@radix-ui/colors": "^3.0.0",
+    "overlayscrollbars": "^2.11.4",
+    "tailwindcss": "^4.1.11"
+  }
+}

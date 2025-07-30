@@ -2,7 +2,7 @@
 import { createHandler, StartServer } from "@solidjs/start/server";
 
 // @ts-expect-error
-const ROOT_DOMAIN = Deno.env.get("ROOT_DOMAIN") || "daisy.tica.fun";
+const ROOT_DOMAIN = globalThis.Deno?.env.get("ROOT_DOMAIN") || "daisy.tica.fun";
 
 export default createHandler(() => {
   return (

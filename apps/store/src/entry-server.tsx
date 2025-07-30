@@ -2,7 +2,7 @@
 import { createHandler, StartServer } from "@solidjs/start/server";
 
 // @ts-expect-error
-const isProd = Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+const isProd = "Deno" in globalThis && Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
 
 export default createHandler((ctx) => {
   const { protocol, host } = new URL(ctx.request.url);

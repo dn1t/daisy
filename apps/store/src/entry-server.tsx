@@ -1,9 +1,12 @@
 // @refresh reload
 import { createHandler, StartServer } from "@solidjs/start/server";
 
+// @ts-expect-error
+const isProd = Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+
 export default createHandler((ctx) => {
   const { protocol, host } = new URL(ctx.request.url);
-  const fontsCSS = `${protocol}//${host.slice(6)}/fonts.css`;
+  const fontsCSS = `${isProd ? "https:" : protocol}//${host.slice(6)}/fonts.css`;
 
   return (
     <StartServer

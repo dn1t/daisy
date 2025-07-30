@@ -11,6 +11,7 @@
       "apps/direct/src/**/*",
       "apps/extension/src/**/*",
       "apps/landing/src/**/*",
+      "apps/landing/server.js",
       "apps/store/src/**/*",
       "packages/auth/src/**/*",
       "packages/ui/src/**/*"

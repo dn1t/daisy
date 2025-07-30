@@ -23,6 +23,8 @@ Deno.serve(async (req) => {
 
     if (hostname.endsWith(ROOT_DOMAIN) && ALLOW_LIST.includes(subdomain)) {
       res.headers.append("Access-Control-Allow-Origin", `${protocol}//${hostname}${port ? `:${port}` : ""}`);
+    } else if (hostname === 'localhost' || hostname.endsWith('.localhost')) {
+      res.headers.append("Access-Control-Allow-Origin", `${protocol}//${hostname}${port ? `:${port}` : ""}`);
     }
   }
 

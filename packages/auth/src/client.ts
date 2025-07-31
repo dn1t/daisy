@@ -30,5 +30,5 @@ export const {
   updateUser,
   useSession,
 } = createAuthClient({
-  baseURL: getEnv("AUTH_URL"),
+  baseURL: getEnv("VITE_AUTH_URL"),
 });

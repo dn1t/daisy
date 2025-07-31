@@ -1,0 +1,17 @@
+{
+  "name": "@daisy/auth",
+  "private": true,
+  "type": "module",
+  "main": "./src/auth.ts",
+  "exports": {
+    ".": "./src/auth.ts",
+    "./client": "./src/client.ts"
+  },
+  "author": "David Lee <me@tica.fun>",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@daisy/db": "workspace:^",
+    "solid-js": "^1.9.7",
+    "zod": "^4.0.14"
+  }
+}

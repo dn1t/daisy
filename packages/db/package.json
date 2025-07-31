@@ -1,0 +1,11 @@
+{
+  "name": "@daisy/db",
+  "private": true,
+  "type": "module",
+  "main": "./src/db.ts",
+  "author": "David Lee <me@tica.fun>",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@libsql/client": "^0.15.10"
+  }
+}

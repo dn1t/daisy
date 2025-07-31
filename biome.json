@@ -14,6 +14,8 @@
       "apps/landing/server.js",
       "apps/store/src/**/*",
       "packages/auth/src/**/*",
+      "packages/db/src/**/*",
+      "packages/tailwind-config/src/**/*",
       "packages/ui/src/**/*"
     ]
   },

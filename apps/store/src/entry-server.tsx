@@ -1,13 +1,8 @@
 // @refresh reload
+import { getEnv } from "@daisy/env";
 import { createHandler, StartServer } from "@solidjs/start/server";
-import { config } from "dotenv";
 
-// @ts-expect-error
-if (!globalThis.Deno) {
-  config({ path: "../../.env" });
-}
-
-const ROOT_DOMAIN = process.env.ROOT_DOMAIN || "daisy.tica.fun";
+const ROOT_DOMAIN = getEnv("ROOT_DOMAIN") || "daisy.tica.fun";
 
 export default createHandler(() => {
   return (

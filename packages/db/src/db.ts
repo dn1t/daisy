@@ -1,14 +1,9 @@
-import { config } from "dotenv";
+import { getEnv } from "@daisy/env";
 import { drizzle } from "drizzle-orm/libsql";
-
-// @ts-expect-error
-if (!globalThis.Deno) {
-  config({ path: "../../.env" });
-}
 
 export const db = drizzle({
   connection: {
-    url: process.env.DB_URL!,
-    authToken: process.env.DB_AUTH_TOKEN,
+    url: getEnv("DB_URL")!,
+    authToken: getEnv("DB_AUTH_TOKEN"),
   },
 });

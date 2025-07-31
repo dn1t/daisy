@@ -6,6 +6,7 @@
   "author": "David Lee <me@tica.fun>",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
+    "@daisy/env": "workspace:^",
     "@libsql/client": "^0.15.10"
   }
 }

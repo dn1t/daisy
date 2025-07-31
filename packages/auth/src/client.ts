@@ -1,10 +1,5 @@
+import { getEnv } from "@daisy/env";
 import { createAuthClient } from "better-auth/solid";
-import { config } from "dotenv";
-
-// @ts-expect-error
-if (!globalThis.Deno) {
-  config({ path: "../../.env" });
-}
 
 export const {
   $ERROR_CODES,
@@ -35,5 +30,5 @@ export const {
   updateUser,
   useSession,
 } = createAuthClient({
-  baseURL: process.env.AUTH_URL,
+  baseURL: getEnv("AUTH_URL"),
 });

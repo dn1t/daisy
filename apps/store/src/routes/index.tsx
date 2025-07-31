@@ -7,7 +7,7 @@ export default function Index() {
     <div>
       <h1 class="font-semibold text-5xl">@daisy/store</h1>
       <p>Hello, world!</p>
-      <div>{session().data?.user.name ?? '바보'}</div>
+      <div>{session().data?.user.name ?? "바보"}</div>
     </div>
   );
 }

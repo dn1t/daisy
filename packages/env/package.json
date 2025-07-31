@@ -1,7 +1,6 @@
 {
   "name": "@daisy/env",
   "private": true,
-  "type": "module",
   "main": "./src/env.ts",
   "author": "David Lee <me@tica.fun>",
   "packageManager": "pnpm@10.13.1"

@@ -1,7 +1,10 @@
+import path from "node:path";
 import { config } from "dotenv";
 
 if (!globalThis.Deno) {
-  config({ path: "../../.env" });
+  config({
+    path: globalThis.process ? path.join(import.meta.dirname, "../../../.env") : "../../../.env",
+  });
 }
 
 export function getEnv(key: string): string | undefined {

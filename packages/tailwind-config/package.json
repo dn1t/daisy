@@ -1,0 +1,9 @@
+{
+  "name": "@daisy/tailwind-config",
+  "private": true,
+  "type": "module",
+  "exports": "./tailwind.css",
+  "dependencies": {
+    "tailwindcss": "catalog:"
+  }
+}

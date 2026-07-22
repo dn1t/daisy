@@ -1,0 +1,23 @@
+{
+  "name": "@daisy/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "node .output/server/index.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@daisy/tailwind-config": "workspace:",
+    "@solidjs/router": "^0.16.2",
+    "@solidjs/start": "^2.0.0-rc.1",
+    "nitro": "^3.0.260610-beta",
+    "solid-js": "^1.9.14",
+    "tailwindcss": "catalog:",
+    "vite": "^8.1.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3"
+  }
+}

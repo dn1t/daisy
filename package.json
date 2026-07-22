@@ -1,0 +1,10 @@
+{
+  "name": "@daisy/workspace",
+  "private": true,
+  "type": "module",
+  "author": "David Lee <me@tica.fun>",
+  "license": "AGPL-3.0-only",
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.5"
+  }
+}

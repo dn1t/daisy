@@ -1,0 +1,17 @@
+@import "tailwindcss" source(none);
+
+@source "../../apps/web/src";
+
+@layer base {
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@theme {
+  --font-sans: P, "Pretendard Variable", Pretendard, system-ui, "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
+  --font-display: O, Onest, var(--font-sans);
+}

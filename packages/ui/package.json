@@ -1,0 +1,13 @@
+{
+  "name": "@daisy/ui",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@solidjs/router": "catalog:",
+    "solid-js": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:",
+    "tailwindcss": "catalog:"
+  }
+}

@@ -7,7 +7,6 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "allowJs": true,
     "strict": true,
     "noEmit": true,
     "types": ["vite/client"],

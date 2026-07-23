@@ -4,6 +4,7 @@
   "type": "module",
   "exports": "./tailwind.css",
   "dependencies": {
+    "@toolwind/corner-shape": "^0.0.8-3",
     "tailwindcss": "catalog:"
   }
 }

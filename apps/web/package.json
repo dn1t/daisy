@@ -6,7 +6,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "nitro deploy --prebuilt"
   },
   "dependencies": {
     "@daisy/tailwind-config": "workspace:",
@@ -21,6 +22,7 @@
     "vite": "^8.1.5"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "catalog:"
+    "@tailwindcss/vite": "catalog:",
+    "wrangler": "^4.113.0"
   }
 }

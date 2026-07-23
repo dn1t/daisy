@@ -11,6 +11,7 @@
     "rules": {
       "preset": "recommended",
       "a11y": {
+        "noStaticElementInteractions": "off",
         "noSvgWithoutTitle": "off",
         "useKeyWithClickEvents": "off"
       },

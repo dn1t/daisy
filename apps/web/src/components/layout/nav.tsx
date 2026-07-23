@@ -1,4 +1,4 @@
-import { Button, Logo, Tabs, type LinkTab } from "@daisy/ui";
+import { Button, createModal, Logo, Tabs, type LinkTab } from "@daisy/ui";
 import { A, useLocation } from "@solidjs/router";
 
 const tabs: LinkTab[] = [
@@ -17,6 +17,8 @@ export function Nav() {
     return p === "/" ? p : p.slice(0, i > 0 ? i : undefined);
   };
 
+  const { open, setOpen, Modal } = createModal();
+
   return (
     <nav class="px-6">
       <div class="mx-auto grid h-18 w-full max-w-4xl grid-cols-[1fr_auto_1fr] items-center">
@@ -28,7 +30,12 @@ export function Nav() {
           Daisy
         </A>
         <Tabs tabs={tabs} selected={selected} />
-        <Button class="ml-auto">시작하기</Button>
+        <Button class="ml-auto" onClick={() => setOpen(true)}>
+          시작하기
+        </Button>
+        <Modal class="">
+          <div class="p-10 font-bold text-5xl dark:text-white">Hello, world!</div>
+        </Modal>
       </div>
     </nav>
   );

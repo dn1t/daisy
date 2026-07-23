@@ -11,7 +11,8 @@
     "rules": {
       "preset": "recommended",
       "a11y": {
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "useKeyWithClickEvents": "off"
       },
       "nursery": {
         "useSortedClasses": "warn"

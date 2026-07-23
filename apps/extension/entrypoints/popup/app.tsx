@@ -1,12 +1,13 @@
 import "@daisy/tailwind-config";
 
-import logo from "@/assets/logo.svg";
+import { MemoryRouter, Route } from "@solidjs/router";
+import { Root } from "./components/root";
+import { Home } from "./routes/home";
 
 export function App() {
   return (
-    <div class="font-bold font-display text-5xl">
-      <img src={logo} alt="Daisy Logo" />
-      Hello, Daisy!
-    </div>
+    <MemoryRouter root={Root}>
+      <Route path="/" component={Home} />
+    </MemoryRouter>
   );
 }

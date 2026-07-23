@@ -38,6 +38,12 @@ importers:
       '@daisy/tailwind-config':
         specifier: 'workspace:'
         version: link:../../packages/tailwind-config
+      '@daisy/ui':
+        specifier: 'workspace:'
+        version: link:../../packages/ui
+      '@solidjs/router':
+        specifier: 'catalog:'
+        version: 0.16.2(solid-js@1.9.14)
       '@wxt-dev/auto-icons':
         specifier: ^1.1.1
         version: 1.1.1(wxt@0.20.27(@types/node@20.19.43)(jiti@2.7.0)(oxc-parser@0.139.0)(rolldown@1.2.0)(supports-color@10.2.2))

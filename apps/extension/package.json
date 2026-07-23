@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@daisy/tailwind-config": "workspace:",
+    "@daisy/ui": "workspace:",
+    "@solidjs/router": "catalog:",
     "@wxt-dev/auto-icons": "^1.1.1",
     "dotenv": "^17.4.2",
     "solid-js": "catalog:",

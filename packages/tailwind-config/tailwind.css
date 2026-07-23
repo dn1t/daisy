@@ -16,4 +16,6 @@
 @theme {
   --font-sans: P, "Pretendard Variable", Pretendard, system-ui, "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
   --font-display: O, Onest, var(--font-sans);
+
+  --color-brand: #1f44ff;
 }

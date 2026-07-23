@@ -2,9 +2,18 @@
   "name": "@daisy/workspace",
   "private": true,
   "type": "module",
+  "scripts": {
+    "dev:web": "pnpm run --filter \"@daisy/web\" dev",
+    "dev:ext": "pnpm run --filter \"@daisy/extension\" dev",
+    "build:web": "pnpm run --filter \"@daisy/web\" build",
+    "build:ext": "pnpm run --filter \"@daisy/extension\" build",
+    "db:generate": "pnpx auth@rc generate --config packages/auth/auth.ts --output packages/db/schema.ts --yes"
+  },
   "author": "David Lee <me@tica.fun>",
   "license": "AGPL-3.0-only",
   "devDependencies": {
-    "@biomejs/biome": "^2.5.5"
+    "@biomejs/biome": "^2.5.5",
+    "@types/node": "^26.1.1",
+    "drizzle-kit": "1.0.0-rc.4"
   }
 }

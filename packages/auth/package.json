@@ -1,0 +1,11 @@
+{
+  "name": "@daisy/auth",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@better-auth/drizzle-adapter": "1.7.0-rc.1",
+    "@better-auth/passkey": "1.7.0-rc.1",
+    "@daisy/db": "workspace:",
+    "better-auth": "^1.6.24"
+  }
+}

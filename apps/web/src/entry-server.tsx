@@ -9,7 +9,6 @@ export default createHandler(() => (
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-          <link rel="preconnect" href="/fonts.css" />
           <link href="/fonts.css" rel="stylesheet" />
           {assets}
         </head>

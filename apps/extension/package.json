@@ -1,0 +1,30 @@
+{
+  "name": "@daisy/extension",
+  "version": "0.0.1",
+  "description": "엔트리를 더 편리하게 만들어요",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "@daisy/tailwind-config": "workspace:",
+    "@wxt-dev/auto-icons": "^1.1.1",
+    "dotenv": "^17.4.2",
+    "solid-js": "catalog:",
+    "tailwindcss": "catalog:"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "catalog:",
+    "@wxt-dev/module-solid": "^1.1.4",
+    "typescript": "^7.0.2",
+    "wxt": "^0.20.27"
+  }
+}

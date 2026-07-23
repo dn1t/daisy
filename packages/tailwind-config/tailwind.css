@@ -2,6 +2,7 @@
 @plugin "@toolwind/corner-shape";
 
 @source "../../apps/web/src";
+@source "../../apps/extension/entrypoints/popup";
 @source "../ui/src";
 
 @layer base {

@@ -50,18 +50,27 @@ export function Nav() {
   return (
     <nav class="px-6">
       <div class="mx-auto grid h-18 w-full max-w-4xl grid-cols-[1fr_auto_1fr] items-center">
-        <A href="/" class="-mt-0.5 flex items-center gap-x-1.5 font-bold font-display text-[22px]">
+        <A
+          href="/"
+          class="-mt-0.5 flex items-center gap-x-1.5 font-bold font-display text-[22px] text-black dark:text-white"
+        >
           <Logo class="h-7.25 w-7.25" />
           Daisy
         </A>
-        <ul ref={ref} class="relative flex rounded-full bg-zinc-100 p-0.75 font-[550] text-sm text-zinc-500">
+        <ul
+          ref={ref}
+          class="relative flex rounded-full bg-zinc-100 p-0.75 font-[550] text-sm text-zinc-500 dark:bg-zinc-900"
+        >
           <For each={links}>
             {(link) => {
               return (
                 <li class="z-10">
                   <A
                     href={link.href}
-                    class={cn("block min-w-12 px-4 py-1 text-center", selected() === link.href && "text-black")}
+                    class={cn(
+                      "block min-w-12 px-4 py-1 text-center",
+                      selected() === link.href && "text-black dark:text-white",
+                    )}
                   >
                     {link.label}
                   </A>
@@ -71,7 +80,7 @@ export function Nav() {
           </For>
           <div
             class={cn(
-              "pointer-events-none absolute h-[calc(100%-6px)] min-w-12 rounded-full border border-zinc-200 bg-white opacity-0",
+              "pointer-events-none absolute h-[calc(100%-6px)] min-w-12 rounded-full border border-zinc-200 bg-white opacity-0 dark:border-zinc-800 dark:bg-zinc-800",
               ready() && "opacity-100 transition-transform",
             )}
             style={{ width: `${width()}px`, transform: `translateX(${offset()}px)` }}

@@ -24,5 +24,15 @@
   --font-sans: P, "Pretendard Variable", Pretendard, system-ui, "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
   --font-display: O, Onest, var(--font-sans);
 
-  --color-brand: #1f44ff;
+  --color-brand-50: oklch(0.958 0.02 279.99);
+  --color-brand-100: oklch(0.924 0.037 278.99);
+  --color-brand-200: oklch(0.847 0.076 277.28);
+  --color-brand-300: oklch(0.765 0.12 274.87);
+  --color-brand-400: oklch(0.688 0.164 271.84);
+  --color-brand-500: oklch(0.614 0.208 266.86);
+  --color-brand-600: oklch(0.521 0.231 261.41);
+  --color-brand-700: oklch(0.425 0.187 261.31);
+  --color-brand-800: oklch(0.337 0.149 261.31);
+  --color-brand-900: oklch(0.24 0.106 261.37);
+  --color-brand-950: oklch(0.182 0.079 261.06);
 }

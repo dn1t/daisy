@@ -37,7 +37,7 @@ export default class KVCookieStore extends Store {
     this.kv.setItem("test", "test");
 
     const promise = this.kv
-      .getItem<{ [domain: string]: { [path: string]: { [key: string]: {} } } }>("cookies")
+      .getItem<{ [domain: string]: { [path: string]: { [key: string]: never } } }>("cookies")
       .then((cookies) => {
         if (!cookies) return false;
         for (const [domain, domainData] of Object.entries(cookies)) {

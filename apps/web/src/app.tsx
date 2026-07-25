@@ -3,6 +3,10 @@ import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Root } from "./components/layout/root";
 
+import { test } from "@daisy/request";
+
+test();
+
 export default function App() {
   return (
     <Router root={Root}>

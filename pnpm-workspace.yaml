@@ -1,6 +1,6 @@
 packages:
   - "apps/*"
-  - "packages/*"
+  - "libs/*"
 
 catalog:
   "@solidjs/router": ^0.16.2

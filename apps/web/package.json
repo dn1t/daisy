@@ -13,7 +13,7 @@
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
     "@solidjs/router": "catalog:",
-    "@solidjs/start": "^2.0.0-rc.1",
+    "@solidjs/start": "^2.0.0-rc.2",
     "nitro": "^3.0.260610-beta",
     "solid-js": "catalog:",
     "tailwind-merge": "catalog:",
@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "catalog:",
-    "wrangler": "^4.113.0"
+    "wrangler": "^4.114.0"
   }
 }

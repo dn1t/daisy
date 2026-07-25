@@ -1,6 +1,6 @@
 import { Button, createModal, Input, Logo, Tabs, type LinkTab } from "@daisy/ui";
 import { A, useLocation } from "@solidjs/router";
-import { createEffect } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 
 const tabs: LinkTab[] = [
   { href: "/", label: "홈" },
@@ -44,11 +44,41 @@ export function Nav() {
 }
 
 function LoginModalContent() {
+  type Tab = "login" | "join";
+  const [tab, setTab] = createSignal<Tab>("join");
+  const [step, setStep] = createSignal(0);
+
   return (
-    <div class="p-10">
-      <h2 class="font-semibold text-xl">로그인</h2>
-      <Input label="이메일" placeholder="me@tica.fun" />
-      <Input label="비밀번호" placeholder="••••••••" />
+    <div class="px-10 pt-4 pb-10">
+      <Tabs
+        class="mx-auto"
+        tabs={[
+          { id: "login", label: "로그인", onClick: () => tab() !== "login" && setTab("login") },
+          { id: "join", label: "회원가입", onClick: () => tab() !== "join" && setTab("join") },
+        ]}
+        selected={tab}
+      />
+      <h2 class="mt-6 px-1.5 font-semibold text-xl">{tab() === "login" ? "로그인" : "회원가입"}</h2>
+      <form class="mt-2 flex w-70 flex-col gap-y-2.25">
+        {(tab() === "login" || step() === 1) && (
+          <>
+            <Input label="이메일" placeholder="me@tica.fun" autofocus />
+            <Input label="비밀번호" placeholder="••••••••" />
+            {tab() === "join" && <Input label="이름" placeholder="띠까" />}
+            <Button type="submit" class="mt-2">
+              {tab() === "login" ? "로그인" : "회원가입"}
+            </Button>
+          </>
+        )}
+        {tab() === "join" && step() === 0 && (
+          <>
+            <Input label="엔트리 아이디" placeholder="dukhwa" autofocus />
+            <Button type="submit" class="mt-2" disabled>
+              다음
+            </Button>
+          </>
+        )}
+      </form>
     </div>
   );
 }

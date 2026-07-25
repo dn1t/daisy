@@ -5,6 +5,7 @@ packages:
 catalog:
   "@solidjs/router": ^0.16.2
   "@tailwindcss/vite": ^4.3.3
+  nitro: 3.0.260610-beta
   solid-js: ^1.9.14
   tailwind-merge: ^3.6.0
   tailwind-variants: ^3.2.2

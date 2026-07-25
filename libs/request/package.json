@@ -1,0 +1,11 @@
+{
+  "name": "@daisy/request",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "fetch-cookie": "^3.2.0",
+    "nitro": "catalog:",
+    "tough-cookie": "^6.0.2"
+  }
+}

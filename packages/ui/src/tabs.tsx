@@ -7,15 +7,21 @@ export interface LinkTab {
   label: string;
 }
 
-export interface ButtonTab {
-  id: string;
+export interface ButtonTab<T extends string> {
+  id: T;
   label: string;
   onClick: () => void;
 }
 
-export type Tab = LinkTab | ButtonTab;
+export type Tab = LinkTab | ButtonTab<string>;
 
-export function Tabs(props: { tabs: Tab[]; selected: Accessor<string> }) {
+interface TabsProps {
+  class?: string;
+  tabs: Tab[];
+  selected: Accessor<string>;
+}
+
+export function Tabs(props: TabsProps) {
   const [offset, setOffset] = createSignal(0);
   const [width, setWidth] = createSignal(0);
   const [ready, setReady] = createSignal(false);
@@ -47,13 +53,16 @@ export function Tabs(props: { tabs: Tab[]; selected: Accessor<string> }) {
   return (
     <ul
       ref={ref}
-      class="relative flex rounded-full bg-zinc-100 p-0.75 font-[550] text-sm text-zinc-500 dark:bg-zinc-900"
+      class={cn(
+        "relative flex w-max rounded-full bg-zinc-100 p-0.75 font-[550] text-sm text-zinc-500 dark:bg-zinc-900",
+        props.class,
+      )}
     >
       <For each={props.tabs}>
         {(tab) => {
           const className = () =>
             cn(
-              "block min-w-12 px-4 py-1 text-center",
+              "block min-w-12 px-4 py-1 text-center cursor-pointer",
               props.selected() === ("href" in tab ? tab.href : tab.id) && "text-black dark:text-white",
             );
 

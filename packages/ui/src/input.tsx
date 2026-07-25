@@ -13,7 +13,7 @@ export function Input(props: InputProps) {
           {props.label}
         </span>
       )}
-      <input {...props} class={cn("px-3.75 pt-0.75 pb-2.5 leading-none focus:outline-none", props.class)} />
+      <input {...props} class={cn("px-3.5 pt-0.75 pb-2.5 leading-none focus:outline-none", props.class)} />
     </label>
   );
 }

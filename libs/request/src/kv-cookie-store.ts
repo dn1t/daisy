@@ -3,11 +3,12 @@
 // Licensed under the MIT License.
 // Written by Ivan Marban, Christian Dannie Storgaard, Emily Marigold Klassen & Luis Finke
 
+import { env } from "cloudflare:workers";
 import { useStorage } from "nitro/storage";
 import {
   type Callback,
   canonicalDomain,
-  type Cookie,
+  Cookie,
   type ErrorCallback,
   type Nullable,
   pathMatch,
@@ -22,7 +23,7 @@ type CookiesIndex = { [domain: string]: CookiesDomainData };
 export default class KVCookieStore extends Store {
   synchronous: boolean = true;
   idx: CookiesIndex = {};
-  kv = useStorage("kv");
+  kv: ReturnType<typeof useStorage>;
 
   httpOnlyExtension: boolean = true;
 
@@ -32,11 +33,27 @@ export default class KVCookieStore extends Store {
 
   constructor() {
     super();
+    this.kv = useStorage(env.daisy !== undefined ? "kv" : undefined);
+    this.kv.setItem("test", "test");
 
-    const promise = this.kv.getItem<CookiesIndex>("cookies").then((cookies) => {
-      if (cookies) this.idx = cookies;
-      return cookies !== undefined;
-    });
+    const promise = this.kv
+      .getItem<{ [domain: string]: { [path: string]: { [key: string]: {} } } }>("cookies")
+      .then((cookies) => {
+        if (!cookies) return false;
+        for (const [domain, domainData] of Object.entries(cookies)) {
+          for (const [path, cookiesMap] of Object.entries(domainData)) {
+            for (const [key, cookieData] of Object.entries(cookiesMap)) {
+              const cookie = Cookie.fromJSON(cookieData);
+              if (cookie) {
+                if (!this.idx[domain]) this.idx[domain] = {};
+                if (!this.idx[domain][path]) this.idx[domain][path] = {};
+                this.idx[domain][path][key] = cookie;
+              }
+            }
+          }
+        }
+        return cookies !== undefined;
+      });
     this._readPromise = promise;
 
     promise

@@ -12,6 +12,9 @@ catalogs:
     '@tailwindcss/vite':
       specifier: ^4.3.3
       version: 4.3.3
+    nitro:
+      specifier: 3.0.260610-beta
+      version: 3.0.260610-beta
     solid-js:
       specifier: ^1.9.14
       version: 1.9.14
@@ -92,12 +95,12 @@ importers:
         version: 0.16.2(solid-js@1.9.14)
       '@solidjs/start':
         specifier: ^2.0.0-rc.2
-        version: 2.0.0-rc.2(crossws@0.4.10(srvx@0.11.22))(supports-color@10.2.2)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.27.7)(jiti@2.7.0))
+        version: 2.0.0-rc.2(crossws@0.4.10(srvx@0.12.4))(supports-color@10.2.2)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.27.7)(jiti@2.7.0))
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
       nitro:
-        specifier: ^3.0.260610-beta
+        specifier: 'catalog:'
         version: 3.0.260610-beta(@libsql/client@0.17.4)(chokidar@5.0.0)(dotenv@17.4.2)(giget@3.3.0)(jiti@2.7.0)(miniflare@4.20260722.0)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.27.7)(jiti@2.7.0))(wrangler@4.114.0)(xml2js@0.6.2)
       solid-js:
         specifier: 'catalog:'
@@ -152,7 +155,7 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0
       nitro:
-        specifier: 3.0.260610-beta
+        specifier: 'catalog:'
         version: 3.0.260610-beta(@libsql/client@0.17.4)(chokidar@5.0.0)(dotenv@17.4.2)(giget@3.3.0)(jiti@2.7.0)(miniflare@4.20260722.0)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0))(wrangler@4.114.0)(xml2js@0.6.2)
       tough-cookie:
         specifier: ^6.0.2
@@ -5718,7 +5721,7 @@ snapshots:
     dependencies:
       solid-js: 1.9.14
 
-  '@solidjs/start@2.0.0-rc.2(crossws@0.4.10(srvx@0.11.22))(supports-color@10.2.2)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.27.7)(jiti@2.7.0))':
+  '@solidjs/start@2.0.0-rc.2(crossws@0.4.10(srvx@0.12.4))(supports-color@10.2.2)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.27.7)(jiti@2.7.0))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@10.2.2)
       '@babel/traverse': 7.29.7(supports-color@10.2.2)
@@ -5730,7 +5733,7 @@ snapshots:
       defu: 6.1.7
       error-stack-parser: 2.1.4
       fast-glob: 3.3.3
-      h3: 2.0.1-rc.25(crossws@0.4.10(srvx@0.11.22))
+      h3: 2.0.1-rc.25(crossws@0.4.10(srvx@0.12.4))
       html-to-image: 1.11.13
       micromatch: 4.0.8
       oxc-parser: 0.139.0
@@ -6263,6 +6266,11 @@ snapshots:
     optionalDependencies:
       srvx: 0.11.22
 
+  crossws@0.4.10(srvx@0.12.4):
+    optionalDependencies:
+      srvx: 0.12.4
+    optional: true
+
   css-select@7.0.0:
     dependencies:
       boolbase: 2.0.0
@@ -6635,12 +6643,19 @@ snapshots:
     optionalDependencies:
       crossws: 0.4.10(srvx@0.11.22)
 
-  h3@2.0.1-rc.25(crossws@0.4.10(srvx@0.11.22)):
+  h3@2.0.1-rc.22(crossws@0.4.10(srvx@0.12.4)):
+    dependencies:
+      rou3: 0.8.1
+      srvx: 0.11.22
+    optionalDependencies:
+      crossws: 0.4.10(srvx@0.12.4)
+
+  h3@2.0.1-rc.25(crossws@0.4.10(srvx@0.12.4)):
     dependencies:
       rou3: 0.9.1
       srvx: 0.11.22
     optionalDependencies:
-      crossws: 0.4.10(srvx@0.11.22)
+      crossws: 0.4.10(srvx@0.12.4)
 
   hast-util-to-html@9.0.5:
     dependencies:
@@ -7113,7 +7128,7 @@ snapshots:
       crossws: 0.4.10(srvx@0.11.22)
       db0: 0.3.4(@libsql/client@0.17.4)
       env-runner: 0.1.16(miniflare@4.20260722.0)(wrangler@4.114.0)
-      h3: 2.0.1-rc.22(crossws@0.4.10(srvx@0.11.22))
+      h3: 2.0.1-rc.22(crossws@0.4.10(srvx@0.12.4))
       hookable: 6.1.1
       nf3: 0.3.22
       ocache: 0.1.5

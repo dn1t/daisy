@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "daisy",
+  "compatibility_date": "2026-07-25",
+  "observability": { "enabled": true },
+  "main": "./.output/server/index.mjs",
+  "assets": { "binding": "ASSETS", "directory": "./.output/public" },
+  "compatibility_flags": ["nodejs_compat"],
+  "kv_namespaces": [{ "binding": "daisy", "id": "90b3ff50d7484f1eaf841e9ad31b2d65" }]
+}

@@ -6,14 +6,15 @@
     "dev": "vite dev",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
-    "preview": "vite preview",
-    "deploy": "nitro deploy --prebuilt"
+    "preview": "pnpm run build && wrangler dev",
+    "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
     "@solidjs/router": "catalog:",
     "@solidjs/start": "^2.0.0-rc.2",
+    "dotenv": "^17.4.2",
     "nitro": "^3.0.260610-beta",
     "solid-js": "catalog:",
     "tailwind-merge": "catalog:",

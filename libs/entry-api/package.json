@@ -1,5 +1,5 @@
 {
-  "name": "@daisy/request",
+  "name": "@daisy/entry-api",
   "private": true,
   "type": "module",
   "exports": "./src/index.ts",

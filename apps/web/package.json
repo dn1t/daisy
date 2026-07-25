@@ -10,7 +10,7 @@
     "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
-    "@daisy/request": "workspace:",
+    "@daisy/entry-api": "workspace:",
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
     "@solidjs/router": "catalog:",

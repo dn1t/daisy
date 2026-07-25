@@ -3,7 +3,7 @@ import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Root } from "./components/layout/root";
 
-import { test } from "@daisy/request";
+import { test } from "@daisy/entry-api";
 
 test();
 

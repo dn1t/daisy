@@ -8,6 +8,11 @@ import { nitro } from "nitro/vite";
 config({ path: "../../.env", quiet: true });
 
 export default defineConfig({
+  build: {
+    rolldownOptions: {
+      external: ["cloudflare:workers"],
+    },
+  },
   plugins: [
     tailwindcss(),
     solidStart(),

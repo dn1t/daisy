@@ -5,7 +5,7 @@
   "scripts": {
     "dev:web": "pnpm run --filter \"@daisy/web\" dev",
     "dev:ext": "pnpm run --filter \"@daisy/extension\" dev",
-    "build:web": "pnpm run --filter \"@daisy/web\" build",
+    "deploy": "pnpm run --filter \"@daisy/web\" deploy",
     "build:ext": "pnpm run --filter \"@daisy/extension\" build",
     "db:generate": "pnpx auth@rc generate --config packages/auth/auth.ts --output packages/db/schema.ts --yes"
   },

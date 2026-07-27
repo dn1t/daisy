@@ -34,7 +34,7 @@ export default class KVCookieStore extends Store {
   constructor() {
     super();
     this.kv = useStorage(env.daisy !== undefined ? "kv" : undefined);
-    this.kv.setItem("test", "test");
+    if (!env.daisy) console.error("KV not loaded");
 
     const promise = this.kv
       .getItem<{ [domain: string]: { [path: string]: { [key: string]: never } } }>("cookies")
@@ -249,6 +249,7 @@ export default class KVCookieStore extends Store {
   putCookie(cookie: Cookie, cb: ErrorCallback): void;
   putCookie(cookie: Cookie): Promise<void>;
   putCookie(cookie: Cookie, cb?: ErrorCallback): void | Promise<void> {
+    if (!cookie.expires?.valueOf()) cookie.setExpires(new Date(Date.now() + 30 * 60 * 1000));
     return this._doSyncWriteAsAsync(() => {
       const { domain, path, key } = cookie;
       const canDomain = canonicalDomain(domain);

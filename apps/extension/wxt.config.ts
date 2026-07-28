@@ -3,13 +3,13 @@ import tailwindcss from "@tailwindcss/vite";
 import { config } from "dotenv";
 import { defineConfig } from "wxt";
 
-config({ path: "../../.env.local", quiet: true });
+config({ path: "../../.env", quiet: true });
 
 export default defineConfig({
   manifest: {
     name: "Daisy",
   },
-  modules: ["@wxt-dev/module-solid", "@wxt-dev/auto-icons"],
+  modules: ["@wxt-dev/module-react", "@wxt-dev/auto-icons"],
   autoIcons: {
     baseIconPath: "assets/logo.svg",
     developmentIndicator: "overlay",

@@ -1,4 +1,4 @@
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "react";
 import { tv } from "tailwind-variants";
 
 const button = tv({
@@ -9,5 +9,5 @@ const button = tv({
 interface ButtonProps extends ComponentProps<"button"> {}
 
 export function Button(props: ButtonProps) {
-  return <button {...props} type={props.type ?? "button"} class={button({ class: props.class })} />;
+  return <button {...props} type={props.type ?? "button"} className={button({ class: props.className })} />;
 }

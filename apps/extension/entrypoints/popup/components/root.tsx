@@ -1,5 +1,5 @@
-import type { RouteSectionProps } from "@solidjs/router";
+import { Outlet } from "react-router";
 
-export function Root(props: RouteSectionProps) {
-  return <Suspense>{props.children}</Suspense>;
+export function Root() {
+  return <Outlet />;
 }

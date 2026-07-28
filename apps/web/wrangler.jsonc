@@ -1,10 +1,17 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "daisy",
-  "compatibility_date": "2026-07-25",
+  "main": "./src/waku.server",
+  "compatibility_flags": ["nodejs_compat", "nodejs_als"],
+  "compatibility_date": "2026-07-28",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist/public",
+    "html_handling": "drop-trailing-slash"
+  },
+  "rules": [{ "type": "ESModule", "globs": ["**/*.js", "**/*.mjs"] }],
+  "no_bundle": true,
   "observability": { "enabled": true },
-  "main": "./.output/server/index.mjs",
-  "assets": { "binding": "ASSETS", "directory": "./.output/public" },
-  "compatibility_flags": ["nodejs_compat"],
+  "upload_source_maps": true,
   "kv_namespaces": [{ "binding": "daisy", "id": "90b3ff50d7484f1eaf841e9ad31b2d65" }]
 }

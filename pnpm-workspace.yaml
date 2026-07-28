@@ -5,11 +5,18 @@ packages:
 catalog:
   "@solidjs/router": ^0.16.2
   "@tailwindcss/vite": ^4.3.3
+  "@types/react": ^19.2.17
+  "@types/react-dom": ^19.2.3
   nitro: 3.0.260610-beta
+  react: ^19.2.8
+  react-dom: ^19.2.8
+  react-server-dom-webpack: ^19.2.8
+  remix: ^3.0.0-beta.5
   solid-js: ^1.9.14
   tailwind-merge: ^3.6.0
-  tailwind-variants: ^3.2.2
+  tailwind-variants: ^3.3.0
   tailwindcss: ^4.3.3
+  waku: 1.0.0-beta.8
 
 allowBuilds:
   esbuild: true
@@ -18,4 +25,4 @@ allowBuilds:
   workerd: true
 
 minimumReleaseAgeExclude:
-  - "@solidjs/start@2.0.0-rc.2"
+  - '@types/node@26.1.2'

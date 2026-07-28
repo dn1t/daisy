@@ -1,13 +1,17 @@
 import "@daisy/tailwind-config";
 
-import { MemoryRouter, Route } from "@solidjs/router";
+import { MemoryRouter, Route, Routes } from "react-router";
 import { Root } from "./components/root";
 import { Home } from "./routes/home";
 
 export function App() {
   return (
-    <MemoryRouter root={Root}>
-      <Route path="/" component={Home} />
+    <MemoryRouter>
+      <Routes>
+        <Route path="/" element={<Root />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
     </MemoryRouter>
   );
 }

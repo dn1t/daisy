@@ -1,18 +1,10 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "strict": true,
-    "noEmit": true,
-    "types": ["vite/client"],
-    "isolatedModules": true,
-    "paths": {
-      "~/*": ["./src/*"]
-    }
+    "moduleDetection": "force",
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "jsx": "react-jsx",
+    "types": ["node", "./worker-configuration.d.ts"]
   }
 }

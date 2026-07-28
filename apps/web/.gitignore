@@ -1,5 +1,5 @@
 dist
-.output
-.vinxi
-app.config.timestamp_*.js
+*.tsbuildinfo
+.cache
 .wrangler
+.dev.vars*

@@ -1,4 +1,4 @@
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "react";
 
 export function Logo(props: ComponentProps<"svg">) {
   return (

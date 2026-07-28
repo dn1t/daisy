@@ -4,10 +4,15 @@
   "type": "module",
   "exports": "./src/index.ts",
   "dependencies": {
-    "@solidjs/router": "catalog:",
-    "solid-js": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "tailwind-merge": "catalog:",
     "tailwind-variants": "catalog:",
-    "tailwindcss": "catalog:"
+    "tailwindcss": "catalog:",
+    "waku": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
   }
 }

@@ -1,30 +1,35 @@
 {
   "name": "@daisy/web",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "start": "node .output/server/index.mjs",
-    "preview": "pnpm run build && wrangler dev",
-    "deploy": "pnpm run build && wrangler deploy"
+    "dev": "waku dev",
+    "build": "waku build",
+    "start": "wrangler dev",
+    "deploy": "pnpm run build && wrangler deploy",
+    "preview": "NODE_ENV=production pnpm run build && wrangler dev",
+    "typegen": "waku router typegen",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@daisy/entry-api": "workspace:",
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
-    "@solidjs/router": "catalog:",
-    "@solidjs/start": "^2.0.0-rc.2",
-    "dotenv": "^17.4.2",
-    "nitro": "catalog:",
-    "solid-js": "catalog:",
-    "tailwind-merge": "catalog:",
-    "tailwind-variants": "catalog:",
-    "tailwindcss": "catalog:",
-    "vite": "^8.1.5"
+    "hono": "^4.12.32",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-server-dom-webpack": "catalog:",
+    "waku": "catalog:"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.47.0",
+    "@rolldown/plugin-babel": "^0.2.3",
     "@tailwindcss/vite": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "^6.0.4",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "tailwindcss": "catalog:",
+    "typescript": "^7.0.2",
     "wrangler": "^4.114.0"
   }
 }

@@ -4,7 +4,6 @@
 // Written by Ivan Marban, Christian Dannie Storgaard, Emily Marigold Klassen & Luis Finke
 
 import { env } from "cloudflare:workers";
-import { useStorage } from "nitro/storage";
 import {
   type Callback,
   canonicalDomain,
@@ -23,7 +22,6 @@ type CookiesIndex = { [domain: string]: CookiesDomainData };
 export default class KVCookieStore extends Store {
   synchronous: boolean = true;
   idx: CookiesIndex = {};
-  kv: ReturnType<typeof useStorage>;
 
   httpOnlyExtension: boolean = true;
 
@@ -33,11 +31,9 @@ export default class KVCookieStore extends Store {
 
   constructor() {
     super();
-    this.kv = useStorage(env.daisy !== undefined ? "kv" : undefined);
-    if (!env.daisy) console.error("KV not loaded");
 
-    const promise = this.kv
-      .getItem<{ [domain: string]: { [path: string]: { [key: string]: never } } }>("cookies")
+    const promise = env.daisy
+      .get<{ [domain: string]: { [path: string]: { [key: string]: never } } }>("cookies", "json")
       .then((cookies) => {
         if (!cookies) return false;
         for (const [domain, domainData] of Object.entries(cookies)) {
@@ -367,7 +363,7 @@ export default class KVCookieStore extends Store {
         this._nextWritePromise = undefined;
 
         try {
-          await this.kv.setItem<CookiesIndex>("cookies", this.idx);
+          await env.daisy.put("cookies", JSON.stringify(this.idx));
         } finally {
           this._writePromise = undefined;
         }

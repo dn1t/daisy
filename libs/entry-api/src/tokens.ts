@@ -56,7 +56,7 @@ export async function getTokens(isRetry = false): Promise<[string | null, string
     });
     if (!res.ok) return [c, null];
 
-    const data = await res.json();
+    const data: { data: { signinByUsername: { id: string } } } = await res.json();
     if (!data?.data?.signinByUsername?.id) return [c, null];
 
     return getTokens(true);

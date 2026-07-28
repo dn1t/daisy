@@ -25,7 +25,7 @@ export async function getUserProfile(id: string): Promise<Result<UserProfile>> {
   });
   if (!res.ok) return { success: false, error: "Failed to fetch user profile" };
 
-  const data = await res.json();
+  const data: { data: { userstatus: UserProfile } } = await res.json();
   if (!data.data?.userstatus) return { success: false, error: "User profile not found" };
 
   return { success: true, data: data.data.userstatus };

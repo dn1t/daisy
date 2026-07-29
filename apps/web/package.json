@@ -12,13 +12,16 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@daisy/entry-api": "workspace:",
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
+    "dotenv": "^17.4.2",
     "hono": "^4.12.32",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-server-dom-webpack": "catalog:",
-    "waku": "catalog:"
+    "waku": "catalog:",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.47.0",

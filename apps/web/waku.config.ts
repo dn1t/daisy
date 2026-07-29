@@ -2,7 +2,15 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import { type DotenvParseOutput, parse } from "dotenv";
+import { readFileSync } from "node:fs";
 import { defineConfig } from "waku/config";
+
+let parsedEnv: DotenvParseOutput | null = null;
+if (process.env.NODE_ENV === "development") {
+  const env = readFileSync("../../.env", "utf-8");
+  parsedEnv = parse(env);
+}
 
 export default defineConfig({
   vite: {
@@ -23,6 +31,7 @@ export default defineConfig({
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         inspectorPort: false,
+        ...(parsedEnv !== null && { config: { vars: parsedEnv } }),
       }),
     ],
   },

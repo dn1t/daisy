@@ -102,12 +102,18 @@ importers:
 
   apps/web:
     dependencies:
+      '@daisy/entry-api':
+        specifier: 'workspace:'
+        version: link:../../libs/entry-api
       '@daisy/tailwind-config':
         specifier: 'workspace:'
         version: link:../../libs/tailwind-config
       '@daisy/ui':
         specifier: 'workspace:'
         version: link:../../libs/ui
+      dotenv:
+        specifier: ^17.4.2
+        version: 17.4.2
       hono:
         specifier: ^4.12.32
         version: 4.12.32
@@ -123,6 +129,9 @@ importers:
       waku:
         specifier: 'catalog:'
         version: 1.0.0-beta.8(@rolldown/plugin-babel@0.2.3(@babel/core@8.0.1)(@babel/runtime@8.0.0)(rolldown@1.2.0)(vite@8.1.5(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)))(@types/node@26.1.2)(babel-plugin-react-compiler@1.0.0)(esbuild@0.28.1)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.0(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.23)))(react@19.2.8)(terser@5.49.0)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.47.0

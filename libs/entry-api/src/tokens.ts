@@ -16,7 +16,6 @@ export async function getTokens(isRetry = false): Promise<[string | null, string
 
   if (csrfToken && isTokenValid(csrfToken) && xToken && isTokenValid(xToken)) return [csrfToken.value, xToken.value];
 
-  const updatedAt = Date.now();
   const html = await fetch("https://playentry.org/personal/default", { bypassTokenInjection: true }).then((res) =>
     res.text(),
   );
@@ -26,14 +25,14 @@ export async function getTokens(isRetry = false): Promise<[string | null, string
 
   const c: string = data?.props?.initialProps?.csrfToken;
   if (!c) return [null, null];
-  await env.daisy.put("csrfToken", JSON.stringify({ value: c, updatedAt }));
+  await env.daisy.put("csrfToken", JSON.stringify({ value: c, updatedAt: Date.now() }));
 
   const user = data?.props?.pageProps?.initialState?.common?.user;
   if (user && typeof user === "object") {
     const x: string = user?.xToken;
     if (!x) return [c, null];
 
-    await env.daisy.put("xToken", JSON.stringify({ value: x, updatedAt }));
+    await env.daisy.put("xToken", JSON.stringify({ value: x, updatedAt: Date.now() }));
     return [c, x];
   } else if (!isRetry) {
     const res = await fetch("https://playentry.org/graphql/SIGNIN_BY_USERNAME", {
@@ -42,7 +41,6 @@ export async function getTokens(isRetry = false): Promise<[string | null, string
         "content-type": "application/json",
         "csrf-token": c,
       },
-      referrer: "https://playentry.org/signin",
       body: JSON.stringify({
         query:
           "mutation($username:String!$password:String!$rememberme:Boolean){signinByUsername(username:$username password:$password rememberme:$rememberme){id}}",

@@ -1,4 +1,3 @@
-import { env } from "cloudflare:workers";
 import { fetch, type Result } from "..";
 
 export interface UserProfile {
@@ -11,8 +10,6 @@ export interface UserProfile {
 }
 
 export async function getUserProfile(id: string): Promise<Result<UserProfile>> {
-  if (!env.daisy) return { success: false, error: "KV not loaded" };
-
   const res = await fetch("https://playentry.org/graphql/FIND_USERSTATUS_BY_USERNAME", {
     method: "POST",
     headers: {

@@ -1,13 +1,25 @@
 import type { ComponentProps } from "react";
 import { tv } from "tailwind-variants";
+import { BeatLoader } from "react-spinners";
 
 const button = tv({
   base: "disabled:cursor-not-allowed disabled:bg-zinc-500 cursor-pointer rounded-[10px] supports-corner-shape:rounded-full bg-zinc-900 dark:bg-zinc-100 px-4.5 py-2.75 font-semibold text-[15px] text-white dark:text-black leading-none corner-squircle",
   variants: {},
 });
 
-interface ButtonProps extends ComponentProps<"button"> {}
+interface ButtonProps extends ComponentProps<"button"> {
+  loading?: boolean;
+}
 
-export function Button(props: ButtonProps) {
-  return <button {...props} type={props.type ?? "button"} className={button({ class: props.className })} />;
+export function Button({ loading, disabled, children, ...props }: ButtonProps) {
+  return (
+    <button
+      {...props}
+      type={props.type ?? "button"}
+      className={button({ class: props.className })}
+      disabled={loading || disabled}
+    >
+      {loading ? <BeatLoader color="currentColor" size={6} /> : children}
+    </button>
+  );
 }

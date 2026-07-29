@@ -6,6 +6,7 @@
     "@better-auth/drizzle-adapter": "1.7.0-rc.2",
     "@better-auth/passkey": "1.7.0-rc.2",
     "@daisy/db": "workspace:",
-    "better-auth": "^1.6.25"
+    "better-auth": "^1.6.25",
+    "zod": "catalog:"
   }
 }

@@ -1,11 +1,12 @@
-import { useCallback, useState, type ComponentProps, type Dispatch, type SetStateAction } from "react";
+import { useCallback, useMemo, useState, type ComponentProps, type Dispatch, type SetStateAction } from "react";
 import { cn } from "tailwind-variants";
 
-function _Modal({
-  open,
-  setOpen,
-  ...props
-}: ComponentProps<"div"> & { open: boolean; setOpen: Dispatch<SetStateAction<boolean>> }) {
+export interface ModalProps extends ComponentProps<"div"> {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export function Modal({ open, setOpen, ...props }: ModalProps) {
   const [_open, _setOpen] = useState(false);
 
   const ref = useCallback(
@@ -51,12 +52,9 @@ function _Modal({
   );
 }
 
-export function createModal() {
+export function useModal() {
   const [open, setOpen] = useState(false);
+  const modalProps = useMemo(() => ({ open, setOpen }), [open]);
 
-  function Modal(props: ComponentProps<"div">) {
-    return <_Modal {...props} open={open} setOpen={setOpen} />;
-  }
-
-  return { open, setOpen, Modal };
+  return { open, setOpen, modalProps };
 }

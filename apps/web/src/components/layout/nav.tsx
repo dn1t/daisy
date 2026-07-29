@@ -68,7 +68,7 @@ function LoginModalContent() {
   }, [entryId]);
 
   return (
-    <div className="px-10 pt-4 pb-10">
+    <div className="px-8 pt-4 pb-7.5">
       <Tabs
         className="mx-auto"
         tabs={[

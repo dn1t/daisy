@@ -3,6 +3,8 @@
 // Licensed under the MIT License.
 // Written by Ivan Marban, Christian Dannie Storgaard, Emily Marigold Klassen & Luis Finke
 
+// Last Updated: bac7ac93f585a7224e8807690aab786efdbae7af
+
 import { env } from "cloudflare:workers";
 import {
   type Callback,

@@ -2,6 +2,7 @@ import { fetch, type Result } from "..";
 
 export interface UserProfile {
   id: string;
+  username: string;
   nickname: string;
   profileImage: {
     filename: string;
@@ -16,7 +17,7 @@ export async function getUserProfile(id: string): Promise<Result<UserProfile>> {
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      query: "query($id:String){userstatus(id:$id){id nickname profileImage{filename imageType}}}",
+      query: "query($id:String){userstatus(id:$id){id username nickname profileImage{filename imageType}}}",
       variables: { id },
     }),
   });

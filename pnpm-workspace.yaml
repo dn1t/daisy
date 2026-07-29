@@ -17,6 +17,7 @@ catalog:
   tailwind-variants: ^3.3.0
   tailwindcss: ^4.3.3
   waku: 1.0.0-beta.8
+  zod: ^4.4.3
 
 allowBuilds:
   esbuild: true

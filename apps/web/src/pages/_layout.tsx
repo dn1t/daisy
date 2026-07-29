@@ -10,7 +10,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <>
       <link rel="icon" type="image/svg+xml" href="/logo.svg" />
       <link href="/fonts.css" rel="stylesheet" />
-      <Nav />
+      <Nav verifyPostId={process.env.ENTRY_VERIFY_POST_ID ?? "60c6c9e116c381168ecdb779"} />
       {children}
     </>
   );

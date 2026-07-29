@@ -7,7 +7,7 @@
     "dev:ext": "pnpm run --filter \"@daisy/extension\" dev",
     "deploy": "pnpm run --filter \"@daisy/web\" deploy",
     "build:ext": "pnpm run --filter \"@daisy/extension\" build",
-    "db:generate": "pnpx auth@rc generate --config packages/auth/auth.ts --output packages/db/schema.ts --yes"
+    "db:generate": "pnpx auth@rc generate --config libs/auth/auth.ts --output libs/db/schema.ts --yes"
   },
   "author": "David Lee <me@tica.fun>",
   "license": "AGPL-3.0-only",

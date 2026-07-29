@@ -7,6 +7,7 @@
     "build": "waku build",
     "start": "wrangler dev",
     "deploy": "pnpm run build && wrangler deploy",
+    "tail": "wrangler tail daisy",
     "preview": "NODE_ENV=production pnpm run build && wrangler dev",
     "typegen": "waku router typegen",
     "cf-typegen": "wrangler types"
@@ -21,7 +22,7 @@
     "react-dom": "catalog:",
     "react-server-dom-webpack": "catalog:",
     "waku": "catalog:",
-    "zod": "^4.4.3"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.47.0",

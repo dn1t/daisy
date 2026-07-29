@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { cn } from "tailwind-variants";
 import type { Link } from "waku";
 
@@ -32,31 +32,49 @@ export function Tabs<T extends string>(props: TabsProps<T>) {
   const [offset, setOffset] = useState(0);
   const [width, setWidth] = useState(0);
   const [ready, setReady] = useState(false);
-  let initialized = false;
+  const list = useRef<HTMLUListElement | null>(null);
+  const initialized = useRef(false);
+
+  const measure = useCallback(() => {
+    const node = list.current;
+    if (!node) return;
+    const items = node.querySelectorAll<HTMLLIElement>(":scope > li");
+
+    let offset = 0;
+    for (const [i, tab] of props.tabs.entries()) {
+      const item = items[i];
+      if (!item) continue;
+      if (("href" in tab && tab.href === props.selected) || ("id" in tab && tab.id === props.selected)) {
+        if (!item.offsetWidth) return;
+
+        setWidth(item.offsetWidth);
+        setOffset(offset);
+        if (!initialized.current) {
+          initialized.current = true;
+          requestAnimationFrame(() => setReady(true));
+        }
+        return;
+      }
+      offset += item.offsetWidth;
+    }
+  }, [props.tabs, props.selected]);
 
   const ref = useCallback(
     (node: HTMLUListElement | null) => {
+      list.current = node;
       if (!node) return;
-      const items = node.querySelectorAll<HTMLLIElement>(":scope > li");
 
-      let offset = 0;
-      for (const [i, tab] of props.tabs.entries()) {
-        const item = items[i];
-        if (!item) continue;
-        if (("href" in tab && tab.href === props.selected) || ("id" in tab && tab.id === props.selected)) {
-          setWidth(item.offsetWidth);
-          setOffset(offset);
-          break;
-        }
-        offset += item.offsetWidth;
-      }
+      measure();
+      const observer = new ResizeObserver(measure);
+      observer.observe(node);
+      for (const item of node.querySelectorAll<HTMLLIElement>(":scope > li")) observer.observe(item);
 
-      if (!initialized) {
-        initialized = true;
-        requestAnimationFrame(() => setReady(true));
-      }
+      return () => {
+        observer.disconnect();
+        list.current = null;
+      };
     },
-    [props.tabs, props.selected],
+    [measure],
   );
 
   return (

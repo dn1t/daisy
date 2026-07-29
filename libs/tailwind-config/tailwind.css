@@ -23,6 +23,7 @@
 @theme {
   --font-sans: P, "Pretendard Variable", Pretendard, system-ui, "Helvetica Neue", "Apple SD Gothic Neo", sans-serif;
   --font-display: O, Onest, var(--font-sans);
+  --font-mono: F, Fira Code, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --color-brand-50: oklch(0.958 0.02 279.99);
   --color-brand-100: oklch(0.924 0.037 278.99);

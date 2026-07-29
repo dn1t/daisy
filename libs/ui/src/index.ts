@@ -1,3 +1,4 @@
+export { cn } from "tailwind-variants";
 export * from "./button";
 export * from "./input";
 export * from "./logo";

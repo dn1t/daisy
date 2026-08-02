@@ -6,8 +6,11 @@ import { username } from "./username-plugin";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "sqlite" }),
-  emailAndPassword: {
-    enabled: true,
+  user: {
+    additionalFields: {
+      entryId: { type: "string", required: true },
+    },
   },
+  emailAndPassword: { enabled: true },
   plugins: [username(), passkey()],
 });

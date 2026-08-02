@@ -13,6 +13,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@daisy/auth": "workspace:",
     "@daisy/entry-api": "workspace:",
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",

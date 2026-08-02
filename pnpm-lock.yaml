@@ -105,6 +105,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@daisy/auth':
+        specifier: 'workspace:'
+        version: link:../../libs/auth
       '@daisy/entry-api':
         specifier: 'workspace:'
         version: link:../../libs/entry-api

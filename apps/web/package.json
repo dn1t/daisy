@@ -17,7 +17,7 @@
     "@daisy/entry-api": "workspace:",
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
-    "dotenv": "^17.4.2",
+    "dotenv": "catalog:",
     "hono": "^4.12.33",
     "react": "catalog:",
     "react-dom": "catalog:",

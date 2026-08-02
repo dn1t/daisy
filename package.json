@@ -7,13 +7,15 @@
     "dev:ext": "pnpm run --filter \"@daisy/extension\" dev",
     "deploy": "pnpm run --filter \"@daisy/web\" deploy",
     "build:ext": "pnpm run --filter \"@daisy/extension\" build",
-    "db:generate": "pnpx auth@rc generate --config libs/auth/auth.ts --output libs/db/schema.ts --yes"
+    "db:generate": "pnpx auth@rc generate --config libs/auth/auth.ts --output libs/db/schema.ts --yes && drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
   },
   "author": "David Lee <me@tica.fun>",
   "license": "AGPL-3.0-only",
   "devDependencies": {
     "@biomejs/biome": "^2.5.6",
     "@types/node": "^26.1.2",
+    "dotenv": "catalog:",
     "drizzle-kit": "1.0.0-rc.4"
   }
 }

@@ -18,7 +18,7 @@
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
     "@wxt-dev/auto-icons": "^1.1.2",
-    "dotenv": "^17.4.2",
+    "dotenv": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "^8.3.0",

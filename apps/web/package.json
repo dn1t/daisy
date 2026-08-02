@@ -17,7 +17,7 @@
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
     "dotenv": "^17.4.2",
-    "hono": "^4.12.32",
+    "hono": "^4.12.33",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-server-dom-webpack": "catalog:",
@@ -25,15 +25,15 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.48.0",
+    "@cloudflare/vite-plugin": "^1.50.0",
     "@rolldown/plugin-babel": "^0.2.3",
     "@tailwindcss/vite": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "^6.0.4",
+    "@vitejs/plugin-react": "^6.0.5",
     "babel-plugin-react-compiler": "^1.0.0",
     "tailwindcss": "catalog:",
     "typescript": "^7.0.2",
-    "wrangler": "^4.115.0"
+    "wrangler": "^4.118.0"
   }
 }

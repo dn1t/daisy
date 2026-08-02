@@ -21,10 +21,10 @@ export async function getUserProfile(id: string): Promise<Result<UserProfile>> {
       variables: { id },
     }),
   });
-  if (!res.ok) return { success: false, error: "Failed to fetch user profile" };
+  if (!res.ok) return { success: false, error: "유저 프로필을 불러오는 중 오류가 발생했어요." };
 
   const data: { data: { userstatus: UserProfile } } = await res.json();
-  if (!data.data?.userstatus) return { success: false, error: "User profile not found" };
+  if (!data.data?.userstatus) return { success: false, error: "유저 프로필을 찾을 수 없어요." };
 
   return { success: true, data: data.data.userstatus };
 }

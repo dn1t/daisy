@@ -93,14 +93,15 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
         selected={tab}
       />
       <h2 className="mt-6 px-1.5 font-semibold text-xl">
-        {tab === "login" ? "로그인" : joinStep === 1 ? "엔트리 계정 인증" : joinStep === 2 ? "" : "회원가입"}
+        {tab === "login" ? "로그인" : joinStep === 2 ? "엔트리 계정 인증" : joinStep === 3 ? "" : "회원가입"}
       </h2>
       <form
         className="mt-2 flex w-70 flex-col gap-y-2.25"
         onSubmit={async (e) => {
           e.preventDefault();
           if (tab === "join") {
-            if (joinStep === 0) {
+            if (joinStep === 0) setJoinStep(1);
+            else if (joinStep === 1) {
               if (!isEntryIdValid) return;
               setError("");
               setLoading(true);
@@ -114,8 +115,8 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
               setEntryProfile(profile);
               setVerificationSession({ code, expiry: new Date(expiry) });
               setLoading(false);
-              setJoinStep(1);
-            } else if (joinStep === 1) {
+              setJoinStep(2);
+            } else if (joinStep === 2) {
               setError("");
               setLoading(true);
               const res = await checkVerificationSession(entryId);
@@ -126,15 +127,15 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
               }
               setVerifiedCode(res.data);
               setLoading(false);
-              setJoinStep(2);
-            } else if (joinStep === 2) {
+              setJoinStep(3);
+            } else if (joinStep === 3) {
               setError("");
               setLoading(true);
             }
           }
         }}
       >
-        {((tab === "login" && loginStep === 0) || (tab === "join" && joinStep === 2)) && (
+        {((tab === "login" && loginStep === 0) || (tab === "join" && joinStep === 3)) && (
           <>
             {tab === "join" && <input type="hidden" value={verifiedCode} />}
             <Input label="이메일" placeholder="me@tica.fun" autoFocus />
@@ -146,6 +147,14 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
           </>
         )}
         {tab === "join" && joinStep === 0 && (
+          <>
+            <div>placeholder</div>
+            <Button type="submit" className="mt-2">
+              다음
+            </Button>
+          </>
+        )}
+        {tab === "join" && joinStep === 1 && (
           <>
             <Input
               label="엔트리 아이디"
@@ -170,12 +179,26 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
             <p className="px-0.5 text-xs text-zinc-700 dark:text-zinc-300">
               엔트리 프로필 URL을 그대로 붙여넣어도 돼요.
             </p>
-            <Button type="submit" className="mt-2" disabled={!isEntryIdValid} loading={loading}>
-              다음
-            </Button>
+            <div className="flex gap-x-3">
+              <Button
+                type="button"
+                color="secondary"
+                className="mt-2 shrink-0"
+                onClick={() => {
+                  setCopied(false);
+                  setVerificationSession(null);
+                  setJoinStep(1);
+                }}
+              >
+                이전
+              </Button>
+              <Button type="submit" className="mt-2 w-full" disabled={!isEntryIdValid} loading={loading}>
+                다음
+              </Button>
+            </div>
           </>
         )}
-        {tab === "join" && joinStep === 1 && entryProfile && verificationSession && (
+        {tab === "join" && joinStep === 2 && entryProfile && verificationSession && (
           <>
             <div className="corner-squircle flex items-center justify-between rounded-xl border border-zinc-200 bg-zinc-100 pr-2.75 pl-3.25 supports-corner-shape:rounded-3xl dark:border-zinc-800 dark:bg-zinc-900">
               <div className="mt-px flex flex-col pt-2.75 pb-2">
@@ -238,7 +261,7 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
                 onClick={() => {
                   setCopied(false);
                   setVerificationSession(null);
-                  setJoinStep(0);
+                  setJoinStep(1);
                 }}
               >
                 이전

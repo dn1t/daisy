@@ -5,7 +5,7 @@ import { Button, cn, Input, Logo, Modal, Tabs, useModal, type LinkTab } from "@d
 import { useEffect, useMemo, useState } from "react";
 import { Link, useRouter } from "waku";
 import z from "zod";
-import { createVerificationSession } from "../../actions/auth";
+import { checkVerificationSession, createVerificationSession } from "../../actions/auth";
 
 const tabs: LinkTab[] = [
   { href: "/", label: "홈" },
@@ -66,6 +66,7 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
 
   const [entryProfile, setEntryProfile] = useState<UserProfile | null>(null);
   const [verificationSession, setVerificationSession] = useState<{ code: string; expiry: Date } | null>(null);
+  const [verifiedCode, setVerifiedCode] = useState<string>("");
 
   const isEntryIdValid = useMemo(() => {
     const res = EntryId.safeParse(entryId);
@@ -76,6 +77,10 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
 
     return true;
   }, [entryId]);
+
+  useEffect(() => {
+    if (error) console.error(error);
+  }, [error]);
 
   return (
     <div className="px-8 pt-4 pb-7.5">
@@ -97,6 +102,7 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
           if (tab === "join") {
             if (joinStep === 0) {
               if (!isEntryIdValid) return;
+              setError("");
               setLoading(true);
               const res = await createVerificationSession(entryId);
               if (!res.success) {
@@ -109,12 +115,28 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
               setVerificationSession({ code, expiry: new Date(expiry) });
               setLoading(false);
               setJoinStep(1);
+            } else if (joinStep === 1) {
+              setError("");
+              setLoading(true);
+              const res = await checkVerificationSession(entryId);
+              if (!res.success) {
+                setError(res.error);
+                setLoading(false);
+                return;
+              }
+              setVerifiedCode(res.data);
+              setLoading(false);
+              setJoinStep(2);
+            } else if (joinStep === 2) {
+              setError("");
+              setLoading(true);
             }
           }
         }}
       >
         {((tab === "login" && loginStep === 0) || (tab === "join" && joinStep === 2)) && (
           <>
+            {tab === "join" && <input type="hidden" value={verifiedCode} />}
             <Input label="이메일" placeholder="me@tica.fun" autoFocus />
             <Input label="비밀번호" placeholder="••••••••" />
             {tab === "join" && <Input label="이름" placeholder="띠까" />}
@@ -221,7 +243,7 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
               >
                 이전
               </Button>
-              <Button type="submit" className="mt-2 w-full">
+              <Button type="submit" className="mt-2 w-full" loading={loading}>
                 다음
               </Button>
             </div>

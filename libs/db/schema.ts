@@ -1,5 +1,5 @@
 import { defineRelationsPart, sql } from "drizzle-orm";
-import { sqliteTable, text, integer, index, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
   id: text("id").primaryKey(),
@@ -14,7 +14,6 @@ export const user = sqliteTable("user", {
     .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
-  username: text("username").unique(),
   entryId: text("entry_id").notNull(),
 });
 
@@ -44,7 +43,7 @@ export const account = sqliteTable(
   {
     id: text("id").primaryKey(),
     issuer: text("issuer").notNull(),
-    providerAccountId: text("provider_account_id").notNull(),
+    accountId: text("account_id").notNull(),
     providerId: text("provider_id").notNull(),
     userId: text("user_id")
       .notNull()
@@ -64,7 +63,7 @@ export const account = sqliteTable(
       .notNull(),
   },
   (table) => [
-    uniqueIndex("account_issuer_providerAccountId_uidx").on(table.issuer, table.providerAccountId),
+    uniqueIndex("account_issuer_accountId_uidx").on(table.issuer, table.accountId),
     index("account_userId_idx").on(table.userId),
   ],
 );

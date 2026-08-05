@@ -2,7 +2,10 @@
   "name": "@daisy/db",
   "private": true,
   "type": "module",
-  "exports": "./db.ts",
+  "exports": {
+    ".": "./db.ts",
+    "./schema": "./schema.ts"
+  },
   "dependencies": {
     "@libsql/client": "^0.17.4",
     "drizzle-orm": "1.0.0-rc.4"

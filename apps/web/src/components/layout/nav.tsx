@@ -5,7 +5,7 @@ import { Button, cn, Input, Logo, Modal, Tabs, useModal, type LinkTab } from "@d
 import { useEffect, useMemo, useState } from "react";
 import { Link, useRouter } from "waku";
 import z from "zod";
-import { checkVerificationSession, createVerificationSession } from "../../actions/auth";
+import { checkVerificationSession, createVerificationSession, joinWithSessionCode } from "../../actions/auth";
 
 const tabs: LinkTab[] = [
   { href: "/", label: "홈" },
@@ -46,7 +46,10 @@ export function Nav({ verifyPostId }: { verifyPostId: string }) {
   );
 }
 
-const EntryId = z.string().regex(/^[0-9a-f]{24}$/, "엔트리 아이디 형식이 올바르지 않아요.");
+const EntryId = z.string().regex(/^[0-9a-f]{24}$/);
+const Email = z.email().max(128);
+const Password = z.string().min(8).max(32);
+const Name = z.string().min(2).max(16);
 
 function objectIdToDate(objectId: string): Date {
   return new Date(parseInt(objectId.slice(0, 8), 16) * 1000);
@@ -63,10 +66,13 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
   const [copied, setCopied] = useState(false);
 
   const [entryId, setEntryId] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState<string>("");
 
   const [entryProfile, setEntryProfile] = useState<UserProfile | null>(null);
   const [verificationSession, setVerificationSession] = useState<{ code: string; expiry: Date } | null>(null);
-  const [verifiedCode, setVerifiedCode] = useState<string>("");
+  const [sessionCode, setSessionCode] = useState<string>("");
 
   const isEntryIdValid = useMemo(() => {
     const res = EntryId.safeParse(entryId);
@@ -77,6 +83,11 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
 
     return true;
   }, [entryId]);
+
+  const isInfoValid = useMemo(() => {
+    if (tab === "join" && (!Email.safeParse(email).success || !Name.safeParse(name).success)) return false;
+    return Password.safeParse(password).success;
+  }, [tab, email, password, name]);
 
   useEffect(() => {
     if (error) console.error(error);
@@ -93,7 +104,7 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
         selected={tab}
       />
       <h2 className="mt-6 px-1.5 font-semibold text-xl">
-        {tab === "login" ? "로그인" : joinStep === 2 ? "엔트리 계정 인증" : joinStep === 3 ? "" : "회원가입"}
+        {tab === "login" ? "로그인" : joinStep === 2 ? "엔트리 계정 인증" : joinStep === 3 ? "정보 입력" : "회원가입"}
       </h2>
       <form
         className="mt-2 flex w-70 flex-col gap-y-2.25"
@@ -125,23 +136,60 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
                 setLoading(false);
                 return;
               }
-              setVerifiedCode(res.data);
+              setSessionCode(res.data);
               setLoading(false);
               setJoinStep(3);
             } else if (joinStep === 3) {
               setError("");
               setLoading(true);
+              const res = await joinWithSessionCode(sessionCode, email, password, name);
+              if (!res.success) {
+                setError(res.error);
+                setLoading(false);
+                return;
+              }
+              setLoading(false);
+              setJoinStep(4);
+              console.log("success");
             }
           }
         }}
       >
         {((tab === "login" && loginStep === 0) || (tab === "join" && joinStep === 3)) && (
           <>
-            {tab === "join" && <input type="hidden" value={verifiedCode} />}
-            <Input label="이메일" placeholder="me@tica.fun" autoFocus />
-            <Input label="비밀번호" placeholder="••••••••" />
-            {tab === "join" && <Input label="이름" placeholder="띠까" />}
-            <Button type="submit" className="mt-2">
+            <Input
+              label="이메일"
+              placeholder="me@tica.fun"
+              value={email}
+              onInput={(e) => setEmail(e.currentTarget.value)}
+              maxLength={128}
+              autoFocus
+            />
+            <Input
+              type={tab === "login" ? "password" : "text"}
+              label={`비밀번호${tab === "join" ? " (8-32자)" : ""}`}
+              placeholder="••••••••"
+              value={password}
+              onInput={(e) => setPassword(e.currentTarget.value)}
+              minLength={8}
+              maxLength={32}
+            />
+            {tab === "join" && (
+              <Input
+                label="이름 (2-16자)"
+                placeholder="띠까"
+                value={name}
+                onInput={(e) => setName(e.currentTarget.value)}
+                minLength={2}
+                maxLength={16}
+              />
+            )}
+            {error && (
+              <p className="mt-0.5 px-0.5 font-medium text-[13px] text-red-600 leading-4.5 dark:text-red-400">
+                {error}
+              </p>
+            )}
+            <Button type="submit" className="mt-2" disabled={!isInfoValid} loading={loading}>
               {tab === "login" ? "로그인" : "회원가입"}
             </Button>
           </>
@@ -253,6 +301,11 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
               {verificationSession.expiry.getMinutes()}
               분까지 유효해요.
             </p>
+            {error && (
+              <p className="mt-0.5 px-0.5 font-medium text-[13px] text-red-600 leading-4.5 dark:text-red-400">
+                {error}
+              </p>
+            )}
             <div className="flex gap-x-3">
               <Button
                 type="button"

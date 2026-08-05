@@ -25,4 +25,13 @@ minimumReleaseAgeExclude:
   - "@cloudflare/vite-plugin@1.48.0"
   - miniflare@4.20260722.1
   - wrangler@4.115.0
-  - '@wxt-dev/auto-icons@1.1.2'
+  - "@wxt-dev/auto-icons@1.1.2"
+  - "@better-auth/core@1.6.26 || 1.7.0-rc.4"
+  - "@better-auth/drizzle-adapter@1.6.26 || 1.7.0-rc.4"
+  - "@better-auth/kysely-adapter@1.6.26 || 1.7.0-rc.4"
+  - "@better-auth/memory-adapter@1.6.26 || 1.7.0-rc.4"
+  - "@better-auth/mongo-adapter@1.6.26 || 1.7.0-rc.4"
+  - "@better-auth/prisma-adapter@1.6.26 || 1.7.0-rc.4"
+  - "@better-auth/telemetry@1.6.26 || 1.7.0-rc.4"
+  - better-auth@1.6.26 || 1.7.0-rc.4
+  - "@better-auth/passkey@1.7.0-rc.4"

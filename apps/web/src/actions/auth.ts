@@ -1,5 +1,6 @@
 "use server";
 
+import { auth, getErrorMessage, isAPIError } from "@daisy/auth";
 import { getComments, getUserProfile, type Result, type UserProfile } from "@daisy/entry-api";
 import { env } from "cloudflare:workers";
 import { unstable_getRequest } from "waku/router/server";
@@ -39,15 +40,15 @@ export async function checkVerificationSession(entryId: string): Promise<Result<
     const ip = unstable_getRequest().headers.get("cf-connecting-ip");
     if (!ip) return { success: false, error: "IP 주소를 확인할 수 없어요." };
 
-    const existingSession = await env.daisy.get<{ entryId: string; code: string }>(`verification-session:${ip}`, {
+    const session = await env.daisy.get<{ entryId: string; code: string }>(`verification-session:${ip}`, {
       type: "json",
     });
-    if (existingSession?.entryId !== entryId) return { success: false, error: "인증 세션이 존재하지 않아요." };
+    if (session?.entryId !== entryId) return { success: false, error: "인증 세션이 존재하지 않아요." };
 
     const commentsRes = await getComments(process.env.ENTRY_VERIFY_POST_ID ?? "60c6c9e116c381168ecdb779");
     if (!commentsRes.success) return { success: false, error: "댓글을 불러오는 중 오류가 발생했어요." };
 
-    const comment = commentsRes.data.find((comment) => comment.content.trim() === existingSession.code);
+    const comment = commentsRes.data.find((comment) => comment.content.trim() === session.code);
     if (comment?.user.id !== entryId) return { success: false, error: "인증 댓글을 찾지 못했어요." };
 
     const code = crypto.randomUUID();
@@ -62,6 +63,39 @@ export async function checkVerificationSession(entryId: string): Promise<Result<
     return { success: true, data: code };
   } catch (error) {
     console.error(error);
+    return { success: false, error: "알 수 없는 오류가 발생했어요." };
+  }
+}
+
+export async function joinWithSessionCode(
+  sessionCode: string,
+  email: string,
+  password: string,
+  name: string,
+): Promise<Result<null>> {
+  try {
+    const ip = unstable_getRequest().headers.get("cf-connecting-ip");
+    if (!ip) return { success: false, error: "IP 주소를 확인할 수 없어요." };
+
+    const session = await env.daisy.get<{ entryId: string; code: string }>(`verified-session:${ip}`, {
+      type: "json",
+    });
+    if (session?.code !== sessionCode) return { success: false, error: "올바르지 않은 인증 세션이에요." };
+
+    await auth.api.signUpEmail({
+      body: {
+        email,
+        password,
+        name,
+        entryId: session.entryId,
+      },
+    });
+
+    await env.daisy.delete(`verified-session:${ip}`);
+    return { success: true, data: null };
+  } catch (error) {
+    console.error(error);
+    if (isAPIError(error) && error.body?.code) return { success: false, error: getErrorMessage(error.body.code) };
     return { success: false, error: "알 수 없는 오류가 발생했어요." };
   }
 }

@@ -114,6 +114,9 @@ importers:
       '@daisy/auth':
         specifier: 'workspace:'
         version: link:../../libs/auth
+      '@daisy/db':
+        specifier: 'workspace:'
+        version: link:../../libs/db
       '@daisy/entry-api':
         specifier: 'workspace:'
         version: link:../../libs/entry-api

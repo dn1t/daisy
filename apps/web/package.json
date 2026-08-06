@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@daisy/auth": "workspace:",
+    "@daisy/db": "workspace:",
     "@daisy/entry-api": "workspace:",
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",

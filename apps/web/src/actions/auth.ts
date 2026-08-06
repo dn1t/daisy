@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, getErrorMessage, isAPIError } from "@daisy/auth";
+import { db } from "@daisy/db";
 import { getComments, getUserProfile, type Result, type UserProfile } from "@daisy/entry-api";
 import { env } from "cloudflare:workers";
 import { unstable_getRequest } from "waku/router/server";
@@ -11,6 +12,9 @@ export async function createVerificationSession(
   try {
     const ip = unstable_getRequest().headers.get("cf-connecting-ip");
     if (!ip) return { success: false, error: "IP 주소를 확인할 수 없어요." };
+
+    const dbRes = await db.query.user.findFirst({ where: { entryId } });
+    if (dbRes) return { success: false, error: "이미 가입된 계정이에요." };
 
     const res = await getUserProfile(entryId);
     if (!res.success) return res;

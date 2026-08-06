@@ -227,6 +227,11 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
             <p className="px-0.5 text-xs text-zinc-700 dark:text-zinc-300">
               엔트리 프로필 URL을 그대로 붙여넣어도 돼요.
             </p>
+            {error && (
+              <p className="mt-0.5 px-0.5 font-medium text-[13px] text-red-600 leading-4.5 dark:text-red-400">
+                {error}
+              </p>
+            )}
             <div className="flex gap-x-3">
               <Button
                 type="button"
@@ -235,7 +240,7 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
                 onClick={() => {
                   setCopied(false);
                   setVerificationSession(null);
-                  setJoinStep(1);
+                  setJoinStep(0);
                 }}
               >
                 이전

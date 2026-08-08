@@ -86,11 +86,17 @@ export async function joinWithSessionCode(
     });
     if (session?.code !== sessionCode) return { success: false, error: "올바르지 않은 인증 세션이에요." };
 
+    let image: string | undefined;
+    const res = await getUserProfile(session.entryId);
+    if (res.success && res.data.profileImage)
+      image = `https://playentry.org/uploads/${res.data.profileImage.filename.slice(0, 2)}/${res.data.profileImage.filename.slice(2, 4)}/${res.data.profileImage.filename}.${res.data.profileImage.imageType}`;
+
     await auth.api.signUpEmail({
       body: {
         email,
         password,
         name,
+        image,
         entryId: session.entryId,
       },
     });

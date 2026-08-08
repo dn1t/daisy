@@ -148,9 +148,7 @@ function LoginModalContent({ verifyPostId }: { verifyPostId: string }) {
                 setLoading(false);
                 return;
               }
-              setLoading(false);
-              setJoinStep(4);
-              console.log("success");
+              location.reload();
             }
           }
         }}

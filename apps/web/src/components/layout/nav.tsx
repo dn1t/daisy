@@ -36,9 +36,16 @@ export function Nav({ user, verifyPostId }: { user: User | null; verifyPostId: s
         </Link>
         <Tabs tabs={tabs} selected={selected} Link={Link} />
         {user && (
-          <button type="button" className="ml-auto h-9.5 w-9.5">
+          <button
+            type="button"
+            className="ml-auto h-10 w-10 cursor-pointer rounded-full border border-zinc-200 dark:border-zinc-800"
+          >
             {user.image && <img src={user.image} alt="프로필 사진" />}
-            {!user.image && <UserIcon weight="fill" />}
+            {!user.image && (
+              <div className="flex h-full items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-900">
+                <UserIcon weight="fill" className="text-zinc-700 dark:text-zinc-300" />
+              </div>
+            )}
           </button>
         )}
         {!user && (

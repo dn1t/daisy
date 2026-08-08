@@ -12,3 +12,5 @@ export function getSession(req: Request = unstable_getRequest()): Promise<Sessio
   contextData.sessionPromise = sessionPromise;
   return sessionPromise;
 }
+
+export type { Session } from "better-auth";

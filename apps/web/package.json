@@ -18,6 +18,7 @@
     "@daisy/entry-api": "workspace:",
     "@daisy/tailwind-config": "workspace:",
     "@daisy/ui": "workspace:",
+    "@phosphor-icons/react": "catalog:",
     "dotenv": "catalog:",
     "hono": "^4.12.33",
     "react": "catalog:",

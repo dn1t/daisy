@@ -1,10 +1,10 @@
-import type { BetterAuthPlugin, Session } from "better-auth";
+import type { BetterAuthPlugin, Session, User } from "better-auth";
 import { createAuthMiddleware } from "better-auth/api";
 import { AsyncLocalStorage } from "node:async_hooks";
 
 export interface WakuCookiesContext {
   betterAuthSetCookie?: string;
-  sessionPromise?: Promise<Session | null> | undefined;
+  sessionPromise?: Promise<{ session: Session | null; user: User | null }> | undefined;
 }
 
 const wakuCookiesStorage = new AsyncLocalStorage<WakuCookiesContext>();

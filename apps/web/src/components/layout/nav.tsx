@@ -1,5 +1,6 @@
 "use client";
 
+import type { User } from "@daisy/auth/session";
 import { Button, Logo, Tabs, useModal, type LinkTab } from "@daisy/ui";
 import { useEffect, useMemo } from "react";
 import { Link, useRouter } from "waku";
@@ -12,7 +13,7 @@ const tabs: LinkTab[] = [
   { href: "/download", label: "다운로드" },
 ];
 
-export function Nav({ verifyPostId }: { verifyPostId: string }) {
+export function Nav({ user, verifyPostId }: { user: User | null; verifyPostId: string }) {
   const { path } = useRouter();
   const selected = useMemo(() => {
     const i = path.indexOf("/", 1);

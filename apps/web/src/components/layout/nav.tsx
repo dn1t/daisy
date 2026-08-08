@@ -29,7 +29,7 @@ export function Nav({ user, verifyPostId }: { user: User | null; verifyPostId: s
 
   return (
     <nav className="px-6">
-      <div className="mx-auto grid h-18 w-full max-w-4xl grid-cols-[1fr_auto_1fr] items-center">
+      <div className="mx-auto grid h-18 w-full max-w-4xl grid-cols-[1fr_auto_1fr] items-center pt-0.5">
         <Link to="/" className="-mt-0.5 flex items-center gap-x-1.5 font-bold font-display text-[22px]">
           <Logo className="h-7.25 w-7.25" />
           Daisy
